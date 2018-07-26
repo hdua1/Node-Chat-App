@@ -1,35 +1,28 @@
 var socket = io();
 
-socket.on('connect',function(){
-	console.log('Connected to server');
-
-	// socket.emit('newMessage',{
-	// 	from: 'Person2',
-	// 	text: 'Message from Client'
-	// });
-
-	// socket.emit('createEmail',{
-	// 	to: 'adkh@example.com',
-	// 	text: 'Hello!'
-	// });
+socket.on('connect', function () {
+  console.log('Connected to server');
 });
 
-socket.on('disconnect',function(){
-	console.log('Disconnected from server');
+socket.on('disconnect', function () {
+  console.log('Disconnected from server');
 });
 
-// socket.on('newEmail',function(email){
-// 	console.log('New Email',email);
-// })
+socket.on('newMessage', function (message) {
+  console.log('newMessage', message);
+  var li = jQuery('<li></li>');
+  li.text(`${message.from}: ${message.text}`);
 
-socket.on('welcomeMessage',function(message){
-	console.log('Welcome Message: ',message);
+  jQuery('#messages').append(li);
 });
 
-socket.on('welcomeUser',function(message){
-	console.log('Welcome User: ',message);
-});
+jQuery('#message-form').on('submit', function (e) {
+  e.preventDefault();
 
-socket.on('createMessage',function(message){
-	console.log('Message: ',message);
+  socket.emit('createMessage', {
+    from: 'User',
+    text: jQuery('[name=message]').val()
+  }, function () {
+
+  });
 });
