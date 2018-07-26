@@ -22,6 +22,14 @@ socket.on('disconnect',function(){
 // 	console.log('New Email',email);
 // })
 
+socket.on('welcomeMessage',function(message){
+	console.log('Welcome Message: ',message);
+});
+
+socket.on('welcomeUser',function(message){
+	console.log('Welcome User: ',message);
+});
+
 socket.on('createMessage',function(message){
-	console.log('New Message: ',message);
+	console.log('Message: ',message);
 });
