@@ -3,10 +3,10 @@ var socket = io();
 socket.on('connect',function(){
 	console.log('Connected to server');
 
-	socket.emit('newMessage',{
-		from: 'Person2',
-		text: 'Message from Client'
-	});
+	// socket.emit('newMessage',{
+	// 	from: 'Person2',
+	// 	text: 'Message from Client'
+	// });
 
 	// socket.emit('createEmail',{
 	// 	to: 'adkh@example.com',
